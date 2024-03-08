@@ -1,0 +1,203 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "listpagebelege",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.11.5",
+      "toolsId": "8898027c-200c-4992-9e88-e9d21cb70f51"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/main-service/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "belege-mange": {
+          "semanticObject": "belege",
+          "action": "manage",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.4",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "listpagebelege.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "BelegeList",
+          "target": "BelegeList"
+        },
+        {
+          "pattern": "Belege({key}):?query:",
+          "name": "BelegeObjectPage",
+          "target": "BelegeObjectPage"
+        },
+        {
+          "pattern": "Belege({key})/items({key2}):?query:",
+          "name": "PositionenObjectPage",
+          "target": "PositionenObjectPage"
+        }
+      ],
+      "targets": {
+        "BelegeList": {
+          "type": "Component",
+          "id": "BelegeList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Belege",
+              "variantManagement": "Page",
+              "initialLoad": "Enabled",
+              "views": {
+                "paths": [
+                  {
+                    "key": "All",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant"
+                  },
+                  {
+                    "key": "tab1",   
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant1",
+                    "visible": "{= ${/UIHelper/IsViewClusterAvailable} === true}"
+                  },
+                  {
+                    "key": "tab2",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant2",
+                    "visible": "{= true}"
+                  },
+                  {
+                    "key": "tab3",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant3",
+                    "visible": "{= true === true}"
+                  },
+                  {
+                    "key": "tab4",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant4",
+                    "visible": "{= false === true}"
+                  }
+                ],
+                "showCounts": true
+              },
+              "navigation": {
+                "Belege": {
+                  "detail": {
+                    "route": "BelegeObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "BelegeObjectPage": {
+          "type": "Component",
+          "id": "BelegeObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Belege",
+              "navigation": {
+                "items": {
+                  "detail": {
+                    "route": "PositionenObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "PositionenObjectPage": {
+          "type": "Component",
+          "id": "PositionenObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Belege/items"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

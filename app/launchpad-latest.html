@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+  <!-- call with ?sap-ui5=[stable, nightly, local] to switch to another version -->
+  <!-- Source look at https://ui5.sap.com/test-resources/sap/ushell/shells/sandbox/fioriSandbox.html -->
+
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="https://www.dsc-gmbh.com/wp-content/uploads/2022/12/cropped-dsc_fav-32x32.png" />
+
+    <title>Launchpad (latest)</title>
+
+    <script>
+      window["sap-ushell-config"] = {
+        defaultRenderer: "fiori2",
+        bootstrapPlugins: {
+          RuntimeAuthoringPlugin: {
+            config: {
+              validateAppVersion: false,
+            },
+          },
+        },
+        services: {
+          EndUserFeedback: {
+            config: {
+              enabled: false,
+            },
+          },
+        },
+        applications: {},
+      };
+    </script>
+
+    <script src="https://ui5.sap.com/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
+    <script
+      src="https://ui5.sap.com/resources/sap-ui-core.js"
+      data-sap-ui-libs="sap.m, sap.ushell, sap.fe.templates"
+      data-sap-ui-compatVersion="edge"
+      data-sap-ui-async="true"
+      data-sap-ui-preload="async"
+      data-sap-ui-theme="sap_horizon_dark"
+      data-sap-ui-frameOptions="allow"
+      data-sap-ui-bindingSyntax="complex"
+    ></script>
+    <script>
+      sap.ui.getCore().attachInit(() => sap.ushell.Container.createRenderer().placeAt("content"));
+    </script>
+  </head>
+
+  <body class="sapUiBody" id="content"></body>
+</html>

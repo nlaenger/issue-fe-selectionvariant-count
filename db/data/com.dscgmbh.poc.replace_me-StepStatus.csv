@@ -1,0 +1,5 @@
+code;name;descr
+OPEN;Offen;Noch offen
+WAIT;Wartend;am warten
+PROCESS;Bearbeitung;in Bearbeitung
+DONE;Erledigt;Abgeschlossen

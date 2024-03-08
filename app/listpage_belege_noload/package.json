@@ -1,0 +1,24 @@
+{
+  "name": "com.dscgmbh.poc.replace_me.issue_fe_selectionvariant.llistpage_belege_noload",
+  "version": "0.0.1",
+  "private": true,
+  "description": "A Fiori application.",
+  "keywords": [
+    "ui5",
+    "openui5",
+    "sapui5"
+  ],
+  "main": "webapp/index.html",
+  "scripts": {
+    "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
+    "deploy": "fiori verify",
+    "deploy-config": "fiori add deploy-config"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@ui5/cli": "3.9.0",
+    "@sap/ux-ui5-tooling": "1.12.3",
+    "@sap/ux-specification": "1.120.3",
+    "@sap-ux/ui5-middleware-fe-mockserver": "2.2.25"
+  }
+}

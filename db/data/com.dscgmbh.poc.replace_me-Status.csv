@@ -1,0 +1,5 @@
+code;name;descr
+NEW;Neu;Neuer Beleg
+PROCESS;Bearbeitung;Beleg in Bearbeitung
+ERROR;Fehler;Beleg hat Fehler
+DONE;Erledigt;Beleg ist Abgeschlossen

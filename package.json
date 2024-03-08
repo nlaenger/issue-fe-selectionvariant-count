@@ -1,0 +1,55 @@
+{
+  "name": "com.dscgmbh.poc.replace_me.issue_fe_selectionvariant",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "npm": ">8.0.0",
+    "node": ">18.0.0"
+  },
+  "workspaces": [
+    "./app/*",
+    "app/*"
+  ],
+  "scripts": {
+    "start": "npx cds-ts serve all --with-mocks --in-memory",
+    "watch-hybrid": "npx cds-ts watch --profile hybrid",
+    "deploy": "cf deploy mta_archives/%npm_package_name%_%npm_package_version%.mtar --retries 1",
+    "undeploy": "cf undeploy %npm_package_name% --delete-services --delete-service-keys --delete-service-brokers",
+    "dump-db": "sqlite3 ./db.sqlite .dump > dump.txt",
+    "clean-db": "rimraf sqlite.db",
+    "build": "npx tsc",
+    "clean": "",
+    "predeploy": "npm run build",
+    "prebuild": "npm run clean",
+    "postbuild": "npm run copy && npx mbt build --mtar %npm_package_name%_%npm_package_version%.mtar",
+    "copy": "copyfiles -f \"./app/**/dist/zip/*.zip\" ./resources",
+    "postclean": "rimraf resources && rimraf gen && rimraf mta_archives",
+    "bind": "npx cds-ts bind -2 %npm_package_name%.destination,%npm_package_name%.xsuaa"
+  },
+  "dependencies": {
+    "@sap/cds": "7.7.0",
+    "@sap/cds-common-content": "1.4.0",
+    "@sap/cds-fiori": "1.2.3",
+    "@cap-js/sqlite": "1.5.1"
+  },
+  "devDependencies": {
+    "@types/express": "4.17.21",
+    "cds-launchpad-plugin": "2.1.8",
+    "cds-swagger-ui-express": "0.8.0",
+    "copyfiles": "2.4.1",
+    "rimraf": "5.0.5",
+    "ts-node": "10.9.2",
+    "typescript": "5.3.3",
+    "cds-plugin-ui5": "0.8.2",
+    "@sap/ux-specification": "1.120.5"
+  },
+  "sapux": [
+    "app/listpage_belege",
+    "app/listpage_pres_belege",
+    "app/listpage_belege_noload",
+    "app/listpage_pres_belege_noload"
+  ]
+}

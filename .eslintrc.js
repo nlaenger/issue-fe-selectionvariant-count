@@ -1,0 +1,36 @@
+module.exports = {
+  env: {
+    browser: false,
+    es6: true,
+    node: true,
+    jest: true,
+    mocha: false,
+  },
+  globals: {
+    SELECT: true,
+    INSERT: true,
+    UPDATE: true,
+    DELETE: true,
+    CREATE: true,
+    DROP: true,
+    CDL: true,
+    CQL: true,
+    CXL: true,
+    cds: true,
+  },
+  ignorePatterns: [".eslintrc.js"],
+  rules: {
+    "no-console": "error",
+    "require-atomic-updates": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-member-access": "warn",
+  },
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: "tsconfig.json",
+    sourceType: "module",
+    tsconfigRootDir: __dirname,
+  },
+};
